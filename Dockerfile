@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:$VERSION
 MAINTAINER Adrian Balcan <contact@adrianbalcan.com>
 
 RUN apt-get update \
