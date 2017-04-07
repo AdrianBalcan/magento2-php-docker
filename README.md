@@ -1,3 +1,4 @@
+
 # Description
 
 This image is built from the official [`php`](https://hub.docker.com/_/php/) repository and contains PHP configurations for Magento 2.
