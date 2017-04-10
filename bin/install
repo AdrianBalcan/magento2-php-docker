@@ -5,6 +5,7 @@ cd /var/www/html
 
 echo "Running Magento 2 setup script..."
 ./bin/magento setup:install \
+  --backend-frontname=$M2SETUP_ADMIN_URL \
   --db-host=$M2SETUP_DB_HOST \
   --db-name=$M2SETUP_DB_NAME \
   --db-user=$M2SETUP_DB_USER \
