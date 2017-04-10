@@ -4,7 +4,7 @@ echo "Initializing setup..."
 cd /var/www/html
 
 echo "Running Magento 2 setup script..."
-/usr/local/bin/php ./bin/magento setup:install \
+./bin/magento setup:install \
   --db-host=$M2SETUP_DB_HOST \
   --db-name=$M2SETUP_DB_NAME \
   --db-user=$M2SETUP_DB_USER \
