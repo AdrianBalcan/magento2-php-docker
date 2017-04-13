@@ -2,9 +2,6 @@
 BASE_DIR=/var/www
 SRC_DIR=$BASE_DIR/html
 
-if [ $M2_CACHE_FLUSH ]; then
-  /var/www/bin/magento cache:flush
-fi
 
 if [ -d $SRC_DIR/bin ] && [ ! -f $SRC_DIR/bin/magento-php ]; then
   mv $SRC_DIR/bin/magento $SRC_DIR/bin/magento-php
@@ -22,3 +19,75 @@ echo "*/1 * * * * su -c \"/usr/local/bin/php $SRC_DIR/update/cron.php\" -s /bin/
 
 # Start the cron service
 /usr/sbin/cron
+
+if [ "$M2_CACHE_FLUSH" = 1 ]; then
+  $SRC_DIR/bin/magento cache:flush
+fi
+
+if [ "$M2_CACHE_CONFIG" = 1 ]; then
+  $SRC_DIR/bin/magento cache:disable config
+else
+  $SRC_DIR/bin/magento cache:enable config
+fi
+
+if [ "$M2_CACHE_LAYOUT" = 1 ]; then
+  $SRC_DIR/bin/magento cache:disable layout
+else
+  $SRC_DIR/bin/magento cache:enable layout
+fi
+
+if [ "$M2_CACHE_BLOCK_HTML" = 1 ]; then
+  $SRC_DIR/bin/magento cache:disable block_html
+else
+  $SRC_DIR/bin/magento cache:enable block_html
+fi
+
+if [ "$M2_CACHE_COLLECTIONS" = 1 ]; then
+  $SRC_DIR/bin/magento cache:disable collections
+else
+  $SRC_DIR/bin/magento cache:enable collections
+fi
+
+if [ "$M2_CACHE_DB_DDL" = 1 ]; then
+  $SRC_DIR/bin/magento cache:disable db_ddl
+else
+  $SRC_DIR/bin/magento cache:enable db_ddl
+fi
+
+if [ "$M2_CACHE_EAV" = 1 ]; then
+  $SRC_DIR/bin/magento cache:disable eav
+else
+  $SRC_DIR/bin/magento cache:enable eav
+fi
+
+if [ "$M2_CACHE_FULL_PAGE" = 1 ]; then
+  $SRC_DIR/bin/magento cache:disable full_page
+else
+  $SRC_DIR/bin/magento cache:enable full_page
+fi
+
+if [ "$M2_CACHE_TRANSLATE" = 1 ]; then
+  $SRC_DIR/bin/magento cache:disable translate
+else
+  $SRC_DIR/bin/magento cache:enable translate
+fi
+
+if [ "$M2_CACHE_CONFIG_INTEGRATION" = 1 ]; then
+  $SRC_DIR/bin/magento cache:disable config_integration
+else
+  $SRC_DIR/bin/magento cache:enable config_integration
+fi
+
+if [ "$M2_CACHE_CONFIG_INTEGRATION_API" = 1 ]; then
+  $SRC_DIR/bin/magento cache:disable config_integration_api
+else
+  $SRC_DIR/bin/magento cache:enable config_integration_api
+fi
+
+if [ "$M2_CACHE_CONFIG_WEBSERVICE" = 1 ]; then
+  $SRC_DIR/bin/magento cache:disable config_webservice
+else
+  $SRC_DIR/bin/magento cache:enable config_webservice
+fi
+
+  $SRC_DIR/bin/magento cache:status
